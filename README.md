@@ -33,7 +33,7 @@ projeto_bi/
 │ ├── classificacao.py # regra de classificação
 │ └── main.py # orquestração do pipeline
 ├── docs/
-│ └── dashboard_especificacao.md # especificação das páginas do Power BI
+│ └── dashboard_especificacao.md
 ├── requirements.txt
 └── README.md
 ```
