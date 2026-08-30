@@ -1,5 +1,7 @@
 # Desafio Técnico - Assistente de BI
 
+**Repositório:** https://github.com/ViniiDev2001/Projeto-Bi-Associados
+
 ## Objetivo do Projeto
 
 Solução de Business Intelligence que consolida três bases de dados de
@@ -39,6 +41,10 @@ projeto_bi/
 ## Passo a Passo para Execução
 
 ```bash
+# 0. Clonar o repositório
+git clone https://github.com/ViniiDev2001/Projeto-Bi-Associados.git
+cd Projeto-Bi-Associados
+
 # 1. Criar e ativar um ambiente virtual (opcional, recomendado)
 python3 -m venv .venv
 source .venv/bin/activate      # Windows: .venv\Scripts\activate
