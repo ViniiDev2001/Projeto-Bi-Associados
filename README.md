@@ -12,28 +12,28 @@ relacionamento, servindo de base para um dashboard executivo em Power BI.
 
 ## Tecnologias Utilizadas
 
-- **Python 3** (pandas, numpy, openpyxl) — tratamento, consolidação,
-  cálculo de indicadores e classificação.
-- **Excel** — formato de origem e de saída da base tratada.
-- **Power BI** — camada de visualização (ver seção "Dashboard").
-- **Git/GitHub** — versionamento do código.
+- **Python 3** (pandas, numpy, openpyxl) - tratamento, consolidação,
+ cálculo de indicadores e classificação.
+- **Excel** - formato de origem e de saída da base tratada.
+- **Power BI** - camada de visualização (ver seção "Dashboard").
+- **Git/GitHub** - versionamento do código.
 
 ## Estrutura do Projeto
 
 ```
 projeto_bi/
 ├── data/
-│   ├── raw/                    # base bruta original (não editar)
-│   │   └── teste_bi_base_crua.xlsx
-│   └── processed/              # saída do pipeline
-│       └── base_consolidada.xlsx
+│ ├── raw/ # base bruta original (não editar)
+│ │ └── teste_bi_base_crua.xlsx
+│ └── processed/ # saída do pipeline
+│ └── base_consolidada.xlsx
 ├── src/
-│   ├── etl.py                  # carga + tratamento + consolidação
-│   ├── indicadores.py          # cálculo dos indicadores
-│   ├── classificacao.py        # regra de classificação
-│   └── main.py                 # orquestração do pipeline
+│ ├── etl.py # carga + tratamento + consolidação
+│ ├── indicadores.py # cálculo dos indicadores
+│ ├── classificacao.py # regra de classificação
+│ └── main.py # orquestração do pipeline
 ├── docs/
-│   └── dashboard_especificacao.md  # especificação das páginas do Power BI
+│ └── dashboard_especificacao.md # especificação das páginas do Power BI
 ├── requirements.txt
 └── README.md
 ```
@@ -47,7 +47,7 @@ cd Projeto-Bi-Associados
 
 # 1. Criar e ativar um ambiente virtual (opcional, recomendado)
 python3 -m venv .venv
-source .venv/bin/activate      # Windows: .venv\Scripts\activate
+source .venv/bin/activate # Windows: .venv\Scripts\activate
 
 # 2. Instalar dependências
 pip install -r requirements.txt
@@ -73,27 +73,27 @@ entrada para o Power BI.
 ## Indicadores Criados
 
 - **QTD_PRODUTOS**: total de produtos com valor "S" por associado.
-- **TEMPO_RELACIONAMENTO_ANOS**: `(data atual − data de associação) / 365.25`.
-- **FAIXA_RENDA**: Até R$3.000 / R$3.001–8.000 / R$8.001–15.000 / Acima de R$15.000.
-- **INDICE_ENGAJAMENTO** (0–100): combinação ponderada dos percentis de
-  `SALDO_MEDIO` (35%), `PIX_MENSAL` (25%) e `COMPRAS_CARTAO` (40%). Usar
-  percentil (e não o valor bruto) evita que a diferença de escala entre
-  R$ e quantidade distorça o índice.
+- **TEMPO_RELACIONAMENTO_ANOS**: `(data atual - data de associação) / 365.25`.
+- **FAIXA_RENDA**: Até R$3.000 / R$3.001-8.000 / R$8.001-15.000 / Acima de R$15.000.
+- **INDICE_ENGAJAMENTO** (0-100): combinação ponderada dos percentis de
+ `SALDO_MEDIO` (35%), `PIX_MENSAL` (25%) e `COMPRAS_CARTAO` (40%). Usar
+ percentil (e não o valor bruto) evita que a diferença de escala entre
+ R$ e quantidade distorça o índice.
 
 ## Regras de Classificação
 
 Aplicadas nesta ordem de prioridade (a primeira regra que casar decide a
 classificação):
 
-1. **Engajado** — Índice de engajamento no quartil superior (top 25% da
-   base) **e** 4+ produtos **e** 2+ anos de relacionamento. Representa
-   alta utilização + diversificação + relacionamento consolidado.
-2. **Maduro** — 4+ produtos **e** mais de 3 anos de relacionamento **e**
-   saldo médio acima da mediana da base.
-3. **Inicial** — até 1 produto **e** menos de 2 anos de relacionamento
-   **e** índice de engajamento abaixo da mediana.
-4. **Em Desenvolvimento** — todos os demais casos (2-3 produtos,
-   relacionamento em crescimento, uso moderado).
+1. **Engajado** - Índice de engajamento no quartil superior (top 25% da
+ base) **e** 4+ produtos **e** 2+ anos de relacionamento. Representa
+ alta utilização + diversificação + relacionamento consolidado.
+2. **Maduro** - 4+ produtos **e** mais de 3 anos de relacionamento **e**
+ saldo médio acima da mediana da base.
+3. **Inicial** - até 1 produto **e** menos de 2 anos de relacionamento
+ **e** índice de engajamento abaixo da mediana.
+4. **Em Desenvolvimento** - todos os demais casos (2-3 produtos,
+ relacionamento em crescimento, uso moderado).
 
 A prioridade evita ambiguidade quando um associado se encaixaria em mais
 de uma regra ao mesmo tempo (ex.: um "Engajado" que também teria muitos
