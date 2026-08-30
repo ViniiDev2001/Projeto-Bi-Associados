@@ -1,9 +1,3 @@
-"""
-indicadores.py
---------------
-Cálculo dos indicadores de relacionamento a partir da base consolidada.
-"""
-
 from __future__ import annotations
 
 import pandas as pd

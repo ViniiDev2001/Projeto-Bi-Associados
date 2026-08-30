@@ -1,33 +1,3 @@
-"""
-etl.py
-------
-Responsável por carregar as três bases brutas (Associados, Produtos,
-Movimentacao), tratar qualidade de dados e consolidar tudo em um único
-DataFrame, unificado pela chave CHAVE.
-
-Tratamentos aplicados (e o porquê):
-
-1. Duplicados: linhas 100% duplicadas são removidas; duplicados de CHAVE
-   (caso existam) mantêm a primeira ocorrência e o restante é registrado
-   em log para auditoria.
-2. Nulos:
-   - RENDA_MENSAL nula -> preenchida com a mediana da própria agência
-     (mais representativo que a mediana geral, já que a renda pode variar
-     por região/agência).
-   - Campos de texto nulos -> "Não Informado".
-3. Padronização de texto:
-   - CIDADE: trim, e mapeamento de variações conhecidas para um nome
-     canônico (ex.: "P. Branco", "PATO BRANCO", "Pato Branco" -> "Pato Branco").
-   - NOME: title case.
-   - Colunas Sim/Não de Produtos: padronizadas para 'S'/'N' maiúsculo.
-4. Inconsistência de datas: DATA_ASSOCIACAO no futuro (posterior à data de
-   processamento) é uma inconsistência de origem. Mantemos o valor original
-   na base tratada (não inventamos dado), mas sinalizamos a linha em
-   FLAG_DATA_FUTURA para que fique visível na análise/dashboard, e usamos
-   a data de hoje como teto apenas no cálculo do indicador de tempo de
-   relacionamento (para não gerar "tempo negativo").
-"""
-
 from __future__ import annotations
 
 import unicodedata

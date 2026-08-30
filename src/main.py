@@ -1,21 +1,7 @@
-"""
-main.py
--------
-Orquestra o pipeline completo:
-  1. Carrega e trata as bases brutas (etl.py)
-  2. Consolida pela CHAVE
-  3. Calcula indicadores (indicadores.py)
-  4. Classifica os associados (classificacao.py)
-  5. Salva a base final tratada em data/processed/
-
-Uso:
-    python src/main.py
-"""
-
 from __future__ import annotations
 
-import os
 import pandas as pd
+import os
 
 from etl import executar_etl
 from indicadores import adicionar_indicadores
